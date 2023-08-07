@@ -4,17 +4,20 @@
 :root {
   --font-logo: 'Orbitron';
 }
+
 /* forçar ocupação de toda a vh para que o rodapé fique sempre no fim */
-body{
-  display:flex;
+body {
+  display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-.ocupacao{
+
+.ocupacao {
   flex: 1;
   /* colocando esta classe na main faz com
   que ela ocupe todo o restante da vh disponível */
 }
+
 /* fim da ocupação da vh */
 
 @keyframes fundos {
@@ -51,70 +54,82 @@ body{
 .logo {
   font-family: var(--font-logo);
 }
-.titulo-1{
+
+.titulo-1 {
   font-family: var(--font-logo);
   font-size: 60px;
 }
-.titulo-2{
+
+.titulo-2 {
   font-family: var(--font-logo);
   font-size: 50px;
 }
-.titulo-3{
+
+.titulo-3 {
   font-family: var(--font-logo);
   font-size: 40px;
 }
-.titulo-4{
+
+.titulo-4 {
   font-family: var(--font-logo);
   font-size: 30px;
 }
+
 .logotipo {
   height: 33px;
   margin-right: 5px;
 }
+
 .logotipo-2 {
   height: 50px;
   margin-right: 5px;
 }
+
 #fundos {
   animation: fundos 10s infinite;
   height: 55vh;
 }
 
-p{
+p {
   font-weight: normal !important;
 }
-p.marc{
+
+p.marc {
   font-weight: bold !important;
 }
-p>strong{
+
+p>strong {
   display: inline-block;
 }
-.primaria{
+
+.primaria {
   font-size: 20px;
 }
-.secundaria{
+
+.secundaria {
   font-size: 15px;
 }
 
-.promo{
+.promo {
   position: relative;
   display: flex;
   align-items: center;
   height: 35vh;
-  max-width:768px;
+  max-width: 768px;
   border: 1px solid black;
   border-radius: 10px;
   padding-right: 10px;
   overflow: hidden;
 }
-.promo img{
+
+.promo img {
   height: 100%;
   object-fit: cover;
-  float:left;
+  float: left;
   margin-right: 10px;
 }
 
-.preco{
+.preco {
   position: absolute;
   padding: 10px;
   height: 15%;
@@ -126,7 +141,7 @@ p>strong{
   left: 0;
 }
 
-.max-formulario{
+.max-formulario {
   max-width: 1024px;
 }
 
@@ -160,13 +175,17 @@ p>strong{
 
 .image-container:hover .image-fadein {
   transform: scale(1.1);
-}/* Fim do recurso FadeIn */
+}
+
+/* Fim do recurso FadeIn */
 
 .card-alt,
 .card-img-top-alt {
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
-}/* correção das bordas dos cards */
+}
+
+/* correção das bordas dos cards */
 
 
 /* Inicio da parallax */
@@ -177,15 +196,18 @@ p>strong{
   background-repeat: no-repeat;
   background-size: cover;
   height: 80vh;
-}/* Fim da parallax */
+}
+
+/* Fim da parallax */
 
 
-.revelar, .gp-revelar{
+.revelar,
+.gp-revelar {
   visibility: hidden;
 }
 
 /* Botão gotop */
-.gotop{
+.gotop {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -199,7 +221,8 @@ p>strong{
   cursor: pointer;
   z-index: 9999;
 }
-.toinvisivel{
+
+.toinvisivel {
   display: none;
 }
 
@@ -212,14 +235,18 @@ p>strong{
   border: 10px solid rgb(255, 255, 255);
   margin-bottom: 0px;
 }
+
 .team-container::before {
   content: '';
   display: block;
-  padding-top: 100%; /* Define uma proporção de 1:1 */
+  padding-top: 100%;
+  /* Define uma proporção de 1:1 */
 }
-.team-container:hover{
+
+.team-container:hover {
   border: 10px solid rgb(105, 105, 253);
 }
+
 /* Centralizando a imagem dentro do container */
 .team-img {
   position: absolute;
@@ -230,47 +257,58 @@ p>strong{
   object-fit: cover;
   border-radius: 50%;
 }
-.team-desc{
+
+.team-desc {
   padding: 130px 10px 10px 10px;
   color: white;
   border-radius: 5px;
   margin-top: -85px;
   padding-bottom: 15px;
 }
-.team-name{
+
+.team-name {
   color: black;
   font-weight: bold;
 }
-.team-title{
+
+.team-title {
   font-size: 1.3em;
 }
-.team-text{
+
+.team-text {
   padding: 15px;
 }
-.rodape{
+
+.rodape {
   /* background-color: rgba(50, 50, 189, 0.589); */
-  color:white;
+  color: white;
 }
-.gp-footer{
+
+.gp-footer {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
-.gp-footer>i{
+
+.gp-footer>i {
   margin-right: 15px;
   margin-bottom: 5px;
 }
-.gp-footer>.marc{
+
+.gp-footer>.marc {
   margin-bottom: 5px;
   font-weight: normal !important;
 }
-.gp-col-foot{
+
+.gp-col-foot {
   padding: 5px 0px 20px 35px;
 }
-.foot-title{
+
+.foot-title {
   margin-bottom: 20px;
 }
-.marca-pessoal{
+
+.marca-pessoal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -278,37 +316,45 @@ p>strong{
   margin-right: -12px;
   text-align: center;
   padding: 15px 0px;
-  background-image: linear-gradient(to bottom,rgba(61, 61, 61, 0.842),black);
+  background-image: linear-gradient(to bottom, rgba(61, 61, 61, 0.842), black);
 }
-.git-link{
+
+.git-link {
   text-decoration: none;
   color: white;
   padding-bottom: 10px;
 }
-.git-link:hover{
+
+.git-link:hover {
   text-shadow: 0px 0px 5px white;
 }
 
+
 /* Média para ajuste das fontes da área team-members */
-@media(min-width:768px){
-  .team-name{
+@media(min-width:768px) {
+  .team-name {
     font-size: 2.6vw;
   }
-  .team-title{
+
+  .team-title {
     font-size: 1.6vw;
   }
-  .team-text{
+
+  .team-text {
     font-size: 1.5vw;
   }
 }
-@media(min-width:992px){
-  .team-name{
+
+@media(min-width:992px) {
+  .team-name {
     font-size: 30px;
   }
-  .team-title{
+
+  .team-title {
     font-size: 1.3em;
   }
-  .team-text{
+
+  .team-text {
     font-size: 20px;
   }
 }
