@@ -11,10 +11,9 @@ public class ConnectionMySQL {
 	public static Connection createConnectionMySQL() throws Exception{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		
-		Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+		Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 		
-		return conn;
-		
+		return connection;
 	}
 	
 	//main criado para testar se a conexão está funcionando
