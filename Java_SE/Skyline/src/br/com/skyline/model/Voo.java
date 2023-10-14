@@ -92,9 +92,9 @@ public class Voo {
 	//toString
 	@Override
 	public String toString() {
-		return "Voo [id_voo=" + id_voo + ", num_voo=" + num_voo + ", comp_aerea=" + comp_aerea + ", assentos="
-				+ assentos + ", preco_unit=" + preco_unit + ", data_partida=" + data_partida + ", origem=" + origem
-				+ ", destino=" + destino + "]";
+		return "Voo [id_voo=" + id_voo + ", num_voo=" + num_voo + ", comp_aerea=" + comp_aerea + 
+				", assentos="+ assentos + ", preco_unit=" + preco_unit + ", data_partida=" + data_partida + 
+				", origem=" + origem + ", destino=" + destino + "]";
 	}
 	
 	
