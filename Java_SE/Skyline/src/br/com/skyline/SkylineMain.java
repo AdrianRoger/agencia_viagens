@@ -1,6 +1,8 @@
 package br.com.skyline;
 
 import java.util.Scanner;
+
+import br.com.skyline.view.CidadesView;
 import br.com.skyline.view.ContatoView;
 
 public class SkylineMain {
@@ -35,7 +37,8 @@ public class SkylineMain {
 					
 					break;
 				case 4:
-					
+					CidadesView cidView = new CidadesView();
+					cidView.cidadeMenu();
 					break;
 				case 5:
 					ContatoView cView = new ContatoView();

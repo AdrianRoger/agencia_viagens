@@ -7,25 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.skyline.connection.ConnectionMySQL;
-import br.com.skyline.model.Contato;
+import br.com.skyline.model.Cidades;
 
-public class ContatoDAO {
+public class CidadesDAO {
+
 	
-	//Create
-	public void createContato(Contato contato) {
-		String sql = "insert into contato(nome, email, telefone, mensagem) values( ?, ?, ?, ?)";
+	public void createCidade(Cidades cidade) {
+		String sql = "INSERT INTO CIDADES(cidade, estado, pais, aeroporto) values(?, ?, ?, ?)";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		
 		try {
+			
 			conn = ConnectionMySQL.createConnectionMySQL();
 			pstm = conn.prepareStatement(sql);
 			
-			pstm.setString(1, contato.getNome());
-			pstm.setString(2, contato.getEmail());
-			pstm.setString(3, contato.getTelefone());
-			pstm.setString(4, contato.getMensagem());
+			pstm.setString(1, cidade.getCidade());
+			pstm.setString(2, cidade.getEstado());
+			pstm.setString(3,cidade.getPais());
+			pstm.setString(4, cidade.getAeroporto());
 			
 			pstm.execute();
 			
@@ -42,17 +43,12 @@ public class ContatoDAO {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
-		
-		
-		System.out.println("*** Contato registrado com sucesso. ***");
 	}
 	
-	//Rescue
-	public List<Contato> listar(){
-		List<Contato> contatos = new ArrayList<Contato>(); 
-		String sql = "select * from contato";
+	public List<Cidades> listar(){
+		List<Cidades> cidades = new ArrayList<Cidades>();
+		String sql = "SELECT * FROM CIDADES";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -64,16 +60,17 @@ public class ContatoDAO {
 			rset = pstm.executeQuery();
 			
 			while(rset.next()) {
-				Contato contato = new Contato();
-				contato.setId_contato(rset.getInt("id_contato"));
-				contato.setNome(rset.getString("nome"));
-				contato.setEmail(rset.getString("email"));
-				contato.setTelefone(rset.getString("telefone"));
-				contato.setMensagem(rset.getString("mensagem"));
-				contato.setResolvido(rset.getBoolean("resolvido"));
+				Cidades cid = new Cidades();
+				cid.setId_cidade(rset.getInt("id_cidade"));
+				cid.setCidade(rset.getString("cidade"));
+				cid.setEstado(rset.getString("estado"));
+				cid.setPais(rset.getString("pais"));
+				cid.setAeroporto(rset.getString("aeroporto"));
 				
-				contatos.add(contato);
+				cidades.add(cid);
+				
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -87,20 +84,21 @@ public class ContatoDAO {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
-		return contatos;
+		
+		return cidades;
 	}
 	
-	//buscar por id
-	public Contato buscarPorId(int id) {
-		String sql = "select * from contato where id_contato = ?";
-		Contato contato = new Contato();
+	public Cidades buscarPorId(int id) {
+		String sql = "Select * from cidades where id_cidade = ?";
+		Cidades cid = new Cidades();
+		
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
 		try {
+			
 			conn = ConnectionMySQL.createConnectionMySQL();
 			pstm = conn.prepareStatement(sql);
 			
@@ -109,12 +107,11 @@ public class ContatoDAO {
 			
 			rset.next();
 			
-			contato.setId_contato(rset.getInt("id_contato"));
-			contato.setNome(rset.getString("nome"));
-			contato.setEmail(rset.getString("email"));
-			contato.setTelefone(rset.getString("telefone"));
-			contato.setMensagem(rset.getString("mensagem"));
-			contato.setResolvido(rset.getBoolean("resolvido"));
+			cid.setId_cidade(rset.getInt("id_cidade"));
+			cid.setCidade(rset.getString("cidade"));
+			cid.setEstado(rset.getString("estado"));
+			cid.setPais(rset.getString("pais"));
+			cid.setAeroporto(rset.getString("aeroporto"));
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -129,38 +126,29 @@ public class ContatoDAO {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		
-		
-		
-		return contato;
+		return cid;
 	}
 	
-	//Update
-	public void atualizar(Contato contato) {
-		
-		String sql = "update contato set nome= ?, email = ?, telefone = ?,"
-				+ " mensagem = ?, resolvido = ? Where id_contato = ?";
+	public void atualizarDados(Cidades cidade) {
+		String sql = "UPDATE CIDADES SET cidade = ?, estado = ?, pais = ?, aeroporto = ?"
+				+ "WHERE id_cidade = ?";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
-		//ResultSet rset = null;
 		
 		try {
 			conn = ConnectionMySQL.createConnectionMySQL();
 			pstm = conn.prepareStatement(sql);
-			//rset = pstm.executeQuery();
 			
-			pstm.setString(1, contato.getNome());
-			pstm.setString(2, contato.getEmail());
-			pstm.setString(3, contato.getTelefone());
-			pstm.setString(4,contato.getMensagem());
-			pstm.setBoolean(5, contato.isResolvido());
-			pstm.setInt(6, contato.getId_contato());
+			pstm.setString(1, cidade.getCidade());
+			pstm.setString(2, cidade.getEstado());
+			pstm.setString(3, cidade.getPais());
+			pstm.setString(4, cidade.getAeroporto());
+			pstm.setInt(5, cidade.getId_cidade());
 			
 			pstm.execute();
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -174,23 +162,21 @@ public class ContatoDAO {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 	}
-
-	//Delete
+	
 	public void apagar(int id) {
-		String sql = "delete from contato where id_contato = ?";
+		String sql = "DELETE FROM CIDADES WHERE id_cidade = ?";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		
 		try {
+			
 			conn = ConnectionMySQL.createConnectionMySQL();
 			pstm = conn.prepareStatement(sql);
 			
 			pstm.setInt(1, id);
-			
 			pstm.execute();
 			
 		}catch(Exception e) {
@@ -200,17 +186,12 @@ public class ContatoDAO {
 				if(pstm != null) {
 					pstm.close();
 				}
-				if(conn != null) {
+				if(conn !=null) {
 					conn.close();
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
-		
-		
 	}
-	
-	
 }
