@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import br.com.skyline.connection.ConnectionMySQL;
 import br.com.skyline.model.Contato;
@@ -136,14 +135,80 @@ public class ContatoDAO {
 
 	//Delete
 	public void apagar(int id) {
+		String sql = "delete from contato where id_contato = ?";
 		
-		System.out.println("*** Apagar ***");
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			conn = ConnectionMySQL.createConnectionMySQL();
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setInt(1, id);
+			
+			pstm.execute();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm != null) {
+					pstm.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
 	}
 	
 	public Contato buscarPorId(int id) {
+		String sql = "select * from contato where id_contato = ?";
+		Contato contato = new Contato();
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
 		
-		System.out.println("*** Buscar ID ***");
-		return new Contato();
+		try {
+			conn = ConnectionMySQL.createConnectionMySQL();
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setInt(1, id);
+			rset = pstm.executeQuery();
+			
+			rset.next();
+			
+			contato.setId_contato(rset.getInt("id_contato"));
+			contato.setNome(rset.getString("nome"));
+			contato.setEmail(rset.getString("email"));
+			contato.setTelefone(rset.getString("telefone"));
+			contato.setMensagem(rset.getString("mensagem"));
+			contato.setResolvido(rset.getBoolean("resolvido"));
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm != null) {
+					pstm.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
+		
+		return contato;
 	}
 
 

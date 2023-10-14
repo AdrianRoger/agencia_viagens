@@ -13,6 +13,7 @@ public class ContatoView {
 		s = new Scanner(System.in);
 		ContatoDAO contatoDao = new ContatoDAO(); 
 		int menuContato = 0;
+		int id;
 		
 		do {
 			
@@ -48,28 +49,34 @@ public class ContatoView {
 					
 					break;
 				case 3:
-					contatoDao.buscarPorId(1);
+					System.out.println("Digite o ID para buscar: ");
+					id = s.nextInt();
+					Contato c2 = new Contato();
+					c2 = contatoDao.buscarPorId(id);
+					System.out.println(c2.toString());
 					break;
 				case 4:
-					Contato c2 = new Contato();
+					Contato c3 = new Contato();
 					System.out.print("Digite seu Id: ");
-					c2.setId_contato(new Scanner(System.in).nextInt());
+					c3.setId_contato(new Scanner(System.in).nextInt());
 					System.out.print("Digite seu nome: ");
-					c2.setNome(new Scanner(System.in).nextLine());
+					c3.setNome(new Scanner(System.in).nextLine());
 					System.out.print("Digite seu Email: ");
-					c2.setEmail(new Scanner(System.in).nextLine());
+					c3.setEmail(new Scanner(System.in).nextLine());
 					System.out.print("Digite seu telefone: ");
-					c2.setTelefone(new Scanner(System.in).nextLine());
+					c3.setTelefone(new Scanner(System.in).nextLine());
 					System.out.print("Digite sua mensagem: ");
-					c2.setMensagem(new Scanner(System.in).nextLine());
+					c3.setMensagem(new Scanner(System.in).nextLine());
 					System.out.print("Resolvido? ");
-					c2.setResolvido(new Scanner(System.in).nextBoolean());
+					c3.setResolvido(new Scanner(System.in).nextBoolean());
 					
 					
-					contatoDao.atualizar(c2);
+					contatoDao.atualizar(c3);
 					break;
 				case 5:
-					contatoDao.apagar(1);					
+					System.out.println("Digite o ID do registro que deseja apagar: ");
+					id = s.nextInt();
+					contatoDao.apagar(id);					
 					break;
 				default:
 					break;
