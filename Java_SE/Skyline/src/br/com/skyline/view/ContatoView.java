@@ -2,19 +2,16 @@ package br.com.skyline.view;
 
 import java.util.Scanner;
 
-import br.com.skyline.dao.ContatoDAO;
-import br.com.skyline.model.Contato;
+import br.com.skyline.controller.ContatoController;
 
 public class ContatoView {
 	private Scanner s;
-
+	private int menuContato = 0;
+	
 	public void contatoMenu() {
-
+		ContatoController contatoController = new ContatoController();
 		s = new Scanner(System.in);
-		ContatoDAO contatoDao = new ContatoDAO(); 
-		int menuContato = 0;
-		int id;
-		
+
 		do {
 			
 			System.out.println("\n     ---- Contato ----     ");
@@ -28,55 +25,20 @@ public class ContatoView {
 			
 			switch(menuContato) {
 				
-				case 1:
-					Contato c = new Contato();
-					System.out.print("Digite seu nome: ");
-					c.setNome(new Scanner(System.in).nextLine());
-					System.out.print("Digite seu Email: ");
-					c.setEmail(new Scanner(System.in).nextLine());
-					System.out.print("Digite seu telefone: ");
-					c.setTelefone(new Scanner(System.in).nextLine());
-					System.out.print("Digite sua mensagem: ");
-					c.setMensagem(new Scanner(System.in).nextLine());
-					
-					contatoDao.createContato(c);
+				case 1://create
+					contatoController.createContatoController();
 					break;
-				case 2:
-					
-					for(Contato c1 : contatoDao.listar()) {
-						System.out.println(c1.toString());
-					}
-					
+				case 2://listar
+					contatoController.listarContatoController();					
 					break;
-				case 3:
-					System.out.println("Digite o ID para buscar: ");
-					id = s.nextInt();
-					Contato c2 = new Contato();
-					c2 = contatoDao.buscarPorId(id);
-					System.out.println(c2.toString());
+				case 3://buscar por id
+					contatoController.buscarPorIdContatoController();
 					break;
-				case 4:
-					Contato c3 = new Contato();
-					System.out.print("Digite seu Id: ");
-					c3.setId_contato(new Scanner(System.in).nextInt());
-					System.out.print("Digite seu nome: ");
-					c3.setNome(new Scanner(System.in).nextLine());
-					System.out.print("Digite seu Email: ");
-					c3.setEmail(new Scanner(System.in).nextLine());
-					System.out.print("Digite seu telefone: ");
-					c3.setTelefone(new Scanner(System.in).nextLine());
-					System.out.print("Digite sua mensagem: ");
-					c3.setMensagem(new Scanner(System.in).nextLine());
-					System.out.print("Resolvido? ");
-					c3.setResolvido(new Scanner(System.in).nextBoolean());
-					
-					
-					contatoDao.atualizar(c3);
+				case 4://atualizar
+					contatoController.atualizarContatoController();
 					break;
-				case 5:
-					System.out.println("Digite o ID do registro que deseja apagar: ");
-					id = s.nextInt();
-					contatoDao.apagar(id);					
+				case 5://apagar
+					contatoController.apagarContatoController();					
 					break;
 				default:
 					break;

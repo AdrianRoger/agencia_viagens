@@ -2,18 +2,17 @@ package br.com.skyline.view;
 
 import java.util.Scanner;
 
-import br.com.skyline.dao.CidadesDAO;
-import br.com.skyline.model.Cidades;
+import br.com.skyline.controller.CidadesController;
 
 public class CidadesView {
 	private Scanner s;
-
+	private int menuCidade = 0;
+	
 	public void cidadeMenu() {
+		CidadesController cidController = new CidadesController(); 
 
 		s = new Scanner(System.in);
-		CidadesDAO cidadeDao = new CidadesDAO(); 
-		int menuCidade = 0;
-		int id;
+		
 		
 		do {
 			
@@ -29,59 +28,23 @@ public class CidadesView {
 			switch(menuCidade) {
 				
 				case 1://create
-					Cidades c = new Cidades();
-					System.out.print("Digite a Cidade: ");
-					c.setCidade(new Scanner(System.in).nextLine());
-					System.out.print("Digite o Estado: ");
-					c.setEstado(new Scanner(System.in).nextLine());
-					System.out.print("Digite Pais: ");
-					c.setPais(new Scanner(System.in).nextLine());
-					System.out.print("Digite Aeroporto: ");
-					c.setAeroporto(new Scanner(System.in).nextLine());
-					
-					cidadeDao.createCidade(c);
+					cidController.createCidadeController();
 					break;
 					
 				case 2://listar
-					
-					for(Cidades c1 : cidadeDao.listar()) {
-						System.out.println(c1.toString());
-					}
+					cidController.listarCidadeController();
 					break;
 					
 				case 3://buscar por ID
-					System.out.println("Digite o ID para buscar: ");
-					id = s.nextInt();
-					Cidades c2 = new Cidades();
-					c2 = cidadeDao.buscarPorId(id);
-					System.out.println(c2.toString());
+					cidController.buscarCidadesPorIDController();
 					break;
 					
 				case 4://Atualizar
-					Cidades c3 = new Cidades();
-					System.out.print("Digite o Id: ");
-					c3.setId_cidade(new Scanner(System.in).nextInt());
-					
-					System.out.print("Digite o nome da Cidade: ");
-					c3.setCidade(new Scanner(System.in).nextLine());
-					
-					System.out.print("Digite o Estado: ");
-					c3.setEstado(new Scanner(System.in).nextLine());
-					
-					System.out.print("Digite o País: ");
-					c3.setPais(new Scanner(System.in).nextLine());
-					
-					System.out.print("Digite nome do Aeroporto: ");
-					c3.setAeroporto(new Scanner(System.in).nextLine());
-										
-					
-					cidadeDao.atualizarDados(c3);
+					cidController.atualizarCidadeController();
 					break;
 					
 				case 5://Apagar
-					System.out.println("Digite o ID do registro que deseja apagar: ");
-					//id = s.nextInt();
-					cidadeDao.apagar(new Scanner(System.in).nextInt());					
+					cidController.apagarCidadeController();				
 					break;
 				default:
 					break;
