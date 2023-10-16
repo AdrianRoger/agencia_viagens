@@ -5,6 +5,7 @@ import java.util.Scanner;
 import br.com.skyline.view.CidadesView;
 import br.com.skyline.view.ClientesView;
 import br.com.skyline.view.ContatoView;
+import br.com.skyline.view.VooView;
 
 public class SkylineMain {
 
@@ -36,7 +37,8 @@ public class SkylineMain {
 					
 					break;
 				case 3:
-					
+					VooView vooView = new VooView();
+					vooView.vooMenu();
 					break;
 				case 4:
 					CidadesView cidView = new CidadesView();

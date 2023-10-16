@@ -57,7 +57,7 @@ public class CidadesView {
 					System.out.println(c2.toString());
 					break;
 					
-				case 4://Atusalizar
+				case 4://Atualizar
 					Cidades c3 = new Cidades();
 					System.out.print("Digite o Id: ");
 					c3.setId_cidade(new Scanner(System.in).nextInt());
