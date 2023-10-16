@@ -1,7 +1,6 @@
 package br.com.skyline.controller;
 
 import java.util.Scanner;
-
 import br.com.skyline.dao.ReservasDAO;
 import br.com.skyline.model.Clientes;
 import br.com.skyline.model.Reservas;
@@ -52,7 +51,6 @@ public class ReservasController {
 		Reservas r3 = new Reservas();
 		Voo v1 = new Voo();
 		
-		
 		System.out.print("Digite o ID para Atualizar: ");
 		r3.setId_reserva(extracted().nextInt());
 		
@@ -62,7 +60,6 @@ public class ReservasController {
 		System.out.println("Cancelar reserva? \n "
 						 + "true para SIM / false para NÃO ");
 		r3.setCancelada(extracted().nextBoolean());
-		
 		
 		System.out.println("Digite o ID do Voo: ");
 		v1.setId_voo(extracted().nextInt());
@@ -77,8 +74,4 @@ public class ReservasController {
 		resDao.apagar(extracted().nextInt());
 	}
 
-
-	
-	
-	
 }
