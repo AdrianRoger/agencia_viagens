@@ -44,7 +44,7 @@
 							<a href="index.html" class="nav-link">Home</a> <a
 								href="destino.html" class="nav-link">Destino</a> <a
 								href="promocoes.html" class="nav-link">Promoções</a> <a
-								href="contato.html" class="nav-link active">Contato</a>
+								href="contato.html" class="nav-link">Contato</a>
 							<hr class="group-divider">
 							<div class="dropdown ms-2">
 								<button class="btn btn-outline-light btn-fundo dropdown-toggle"
@@ -71,99 +71,133 @@
 		<section id="fundos"
 			class="d-flex justify-content-center align-items-center text-center">
 			<div class="fundo-azul-opaco revelar">
-				<h1 class="titulo-3">Com dificuldades?</h1>
-				<p>Deixe-nos uma mensagem, um de nossos consultores entrará em
-					contato em breve.</p>
+				<h1 class="titulo-3">Cidades</h1>
+				<p>Formulário para cadastro de cidades.</p>
 			</div>
 		</section>
 		<section>
 			<div class="container max-formulario py-5">
 				<div class="row">
 					<div class="col">
-						<h1 class="text-center titulo-3">Fale Conosco</h1>
+						<h1 class="text-center titulo-3">Cidades</h1>
 						<hr class="group-divider">
 						<div class="table-responsive">
 							<table class="table table-striped">
 
 								<tr>
 									<th>#</th>
-									<th>Nome</th>
-									<th>Email</th>
-									<th>Telefone</th>
-									<th>Mensagem</th>
-									<th>Resolvido</th>
+									<th>Cidade</th>
+									<th>Estado</th>
+									<th>País</th>
+									<th>Aeroporto</th>
 									<th>Ações</th>
 								</tr>
-								<jstl:forEach items="${contatos}" var="c">
+								<jstl:forEach items="${cidades}" var="c">
+
 									<tr>
-										<td>${c.id_contato}</td>
-										<td>${c.nome}</td>
-										<td>${c.email}</td>
-										<td>${c.telefone}</td>
-										<td>${c.mensagem}</td>
-										<td>${c.resolvido ? 'Sim' : 'Não'}</td>
+										<td>${c.id_cidade}<input type="hidden"
+											value="${c.id_cidade}"></td>
+										<td>${c.cidade}</td>
+										<td>${c.estado}</td>
+										<td>${c.pais}</td>
+										<td>${c.aeroporto}</td>
+
 										<td>
 											<div class="btn-group">
 												<a href="#" class="btn btn-sm btn-outline-secondary"
 													data-bs-toggle="modal"
-													data-bs-target="#update${c.id_contato}"><i class="bi bi-pencil-square"></i></a> 
-												<a
-													href="#" data-bs-toggle="modal"
-													data-bs-target="#delete${c.id_contato}"
+													data-bs-target="#detalhe${c.id_cidade}"><i class="bi bi-pencil-square"></i></a> <a
+													href="cidades-delete?id=${c.id_cidade}"
 													class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3-fill"></i></a>
 											</div>
 										</td>
 									</tr>
-									
-									<div class="modal" id="delete${c.id_contato}" tabindex="-1">
+									<div class="modal" id="detalhe${c.id_cidade}" tabindex="-1">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title">Excluir Mensagem</h5>
+													<h5 class="modal-title">Cidade</h5>
 													<button type="button" class="btn-close"
 														data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													<p>Deseja realmente excluir?</p>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-sm btn-secondary"
-														data-bs-dismiss="modal">Close</button>
-													<a href="contato-delete?id=${c.id_contato}"
-														class="btn btn-sm btn-danger">Excluir</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									
-									<div class="modal" id="update${c.id_contato}" tabindex="-1">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title">Contato</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<p>Nome : ${c.nome}</p>
-													<p>Email : ${c.email}</p>
-													<p>Telefone : ${c.telefone}</p>
-													<p>Mensagem : ${c.mensagem}</p>
-													<p>Resolvido: ${c.resolvido ? 'Sim' : 'Não'}</p>
-
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-bs-dismiss="modal">Cancelar</button>
-													<a href="./contato-update?id=${c.id_contato}"
-														class="btn btn-primary">Marcar como Concluído</a>
+													<form action="/SkylineMvcServlet/cidades-update">
+														<input type="hidden" class="form-control" id="id"
+															name="id" value="${c.id_cidade}" required>
+														<div class="mb-3">
+															<label for="cidade" class="col-form-label">Cidade:</label>
+															<input type="text" class="form-control" id="cidade"
+																name="cidade" value="${c.cidade}" required>
+														</div>
+														<div class="mb-3">
+															<label for="estado" class="col-form-label">Estado:</label>
+															<input type="text" class="form-control" id="estado"
+																name="estado" value="${c.estado}" required>
+														</div>
+														<div class="mb-3">
+															<label for="pais" class="col-form-label">País:</label> <input
+																type="text" class="form-control" id="pais" name="pais"
+																value="${c.pais}" required>
+														</div>
+														<div class="mb-3">
+															<label for="aero" class="col-form-label">Aeroporto:</label>
+															<input type="text" class="form-control" id="aero"
+																name="aero" value="${c.aeroporto}" required>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary"
+																data-bs-dismiss="modal">Cancelar</button>
+															<button type="submit" class="btn btn-primary">Atualizar</button>
+														</div>
+													</form>
 												</div>
 											</div>
 										</div>
 									</div>
 								</jstl:forEach>
-
 							</table>
+							<a href="#" class="btn btn-outline-light btn-fundo"
+								data-bs-toggle="modal" data-bs-target="#create">Cadastrar
+								Cidade</a>
+							<div class="modal" id="create" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Cidade</h5>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form action="/SkylineMvcServlet/cidades-create">
+												<div class="mb-3">
+													<label for="cidade" class="col-form-label">Cidade:</label>
+													<input type="text" class="form-control" id="cidade"
+														name="cidade" required>
+												</div>
+												<div class="mb-3">
+													<label for="estado" class="col-form-label">Estado:</label>
+													<input type="text" class="form-control" id="estado"
+														name="estado" required>
+												</div>
+												<div class="mb-3">
+													<label for="pais" class="col-form-label">País:</label> <input
+														type="text" class="form-control" id="pais" name="pais" required>
+												</div>
+												<div class="mb-3">
+													<label for="aero" class="col-form-label">Aeroporto:</label>
+													<input type="text" class="form-control" id="aero"
+														name="aero" required>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-bs-dismiss="modal">Cancelar</button>
+													<button type="submit" class="btn btn-primary">Cadastrar</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -235,11 +269,13 @@
 					</div>
 				</div>
 			</div>
-		<div class="marca-pessoal">
-			<!-- <p>Página Desenvolvida por <strong>Adrian Roger</strong>.  -->
-			<a class="git-link fs-3" href="https://github.com/AdrianRoger"
-				target="_blank"><i class="bi bi-github me-2"></i>github.com/AdrianRoger</a>
-		</div>
+			<div class="marca-pessoal">
+				<!-- <p>Página Desenvolvida por <strong>Adrian Roger</strong>.  -->
+				<p>
+					<a class="git-link fs-3" href="https://github.com/AdrianRoger"
+						target="_blank"><i class="bi bi-github me-2"></i>github.com/AdrianRoger</a>
+				</p>
+			</div>
 		</div>
 	</footer>
 

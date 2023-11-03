@@ -55,7 +55,8 @@ public class ReservasDAO {
 	
 	public List<Reservas> listar(){
 		List<Reservas> reservas = new ArrayList<Reservas>();
-		String sql = "SELECT * FROM RESERVAS";
+		String sql = "SELECT id_reserva, DATE_FORMAT(data_reserva, '%d/%m/%Y') AS data_reserva, "
+				+ "num_pessoas, cancelada, FK_cpf_clientes, FK_id_voo FROM reservas ";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -103,7 +104,10 @@ public class ReservasDAO {
 	}
 	
 	public Reservas buscarPorId(int id) {
-		String sql = "Select * from reservas where id_reserva = ?";
+		String sql = "SELECT id_reserva, DATE_FORMAT(data_reserva, '%d/%m/%Y') AS data_reserva, "
+				+ "num_pessoas, cancelada, FK_cpf_clientes, FK_id_voo FROM reservas WHERE id_reserva = ?";
+		
+
 		Reservas res = new Reservas();
 		
 		Connection conn = null;

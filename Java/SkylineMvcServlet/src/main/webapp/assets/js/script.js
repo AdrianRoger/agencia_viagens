@@ -7,7 +7,18 @@ display.reveal('.gp-revelar', {interval:100});
 // fim revelar function
 //até aqui o script ScrollReveal e usado
 //-----------------------------------------------
-
+document.addEventListener('DOMContentLoaded', function () {
+    const formulario = document.getElementById('id_form');
+    
+    formulario.addEventListener('submit', function (event) {
+        if (formulario.checkValidity()) {
+            alert('Mensagem Enviada com sucesso!');
+        } else {
+            // Evitar o envio do formulário se a validação falhar
+            event.preventDefault();
+        }
+    });
+});
 
 // Início do evento .toinvisivel
 const btngotop = document.querySelector('.gotop');

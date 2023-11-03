@@ -53,7 +53,7 @@ public class ClientesDAO {
 	
 	public List<Clientes> listar(){
 		List<Clientes> clientes = new ArrayList<Clientes>();
-		String sql = "SELECT * FROM CLIENTES";
+		String sql = "SELECT * FROM CLIENTES ORDER BY nome";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -180,6 +180,37 @@ public class ClientesDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void atualizarCpf(String oldCpf, String newCpf) {
+		String sql = "UPDATE CLIENTES SET CPF = ? where CPF = ?";
+		
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			conn = ConnectionMySQL.createConnectionMySQL();
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setString(1, newCpf);
+			pstm.setString(2, oldCpf);
+			pstm.execute();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm != null) {
+					pstm.close();
+				}
+				if(conn !=null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 	public void apagar(String cpf) {

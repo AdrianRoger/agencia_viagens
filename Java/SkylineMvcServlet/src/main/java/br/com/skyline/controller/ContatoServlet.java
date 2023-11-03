@@ -68,7 +68,7 @@ public class ContatoServlet extends HttpServlet {
 		
 		cDao.createContato(contato);
 		
-		response.sendRedirect("contato");
+		response.sendRedirect("contato.html");
 	}
 	
 	protected void delete(HttpServletRequest request, HttpServletResponse response) 

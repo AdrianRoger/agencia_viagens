@@ -52,7 +52,10 @@ public class VooDAO {
 	
 	public List<Voo> listar(){
 		List<Voo> voos = new ArrayList<Voo>();
-		String sql = "SELECT * FROM VOO";
+		//String sql = "SELECT * FROM VOO";
+		String sql = "SELECT id_voo, num_voo, comp_aerea, assentos, preco_unit, "
+				+ "DATE_FORMAT(data_partida, '%d/%m/%Y') AS data_partida, "
+				+ "FK_id_cidade_origem, FK_id_cidade_destino FROM VOO";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;

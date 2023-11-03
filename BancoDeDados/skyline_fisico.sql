@@ -3,22 +3,22 @@ create database skyline;
 use skyline;
 
 create table if not exists CLIENTES(
-	cpf varchar(11) primary key,
-    nome varchar(50) not null,
-    email varchar(50) unique not null,
+	cpf varchar(14) primary key,
+    nome varchar(80) not null,
+    email varchar(80) unique not null,
     telefone varchar(14),
-    cep varchar(8) not null,
-    rua varchar(50) not null,
+    cep varchar(9) not null,
+    rua varchar(80) not null,
     numero int not null,
-    complemento varchar(50),
+    complemento varchar(80),
     ativo boolean default true
 );
-insert into clientes values("00000000001", "Adrian Roger", "adrian.santos@aluno.recode.org.br", 
-"61995034528", "72145000", "Qnm 38", 46, null, true);
-insert into clientes values("00000000002", "Lucas", "lucas@gmail.com", 
-"61999999999", "00000000", "Sem nome", 01, null, true);
-insert into clientes values("00000000003", "Marco Aurélio", "marco.aurelio@gmail.com", 
-"61987654321", "72000000", "Qnm 40 conj C", 35, null, true);
+insert into clientes values("000.000.000-01", "Adrian Roger", "adrian.santos@aluno.recode.org.br", 
+"61995034528", "72145-000", "Qnm 38", 46, null, true);
+insert into clientes values("000.000.000-02", "Lucas", "lucas@gmail.com", 
+"61999999999", "00000-000", "Sem nome", 01, null, true);
+insert into clientes values("000.000.000-03", "Marco Aurélio", "marco.aurelio@gmail.com", 
+"61987654321", "72000-000", "Qnm 40 conj C", 35, null, true);
 
 create table if not exists CIDADES(
 	id_cidade int primary key auto_increment,
@@ -58,21 +58,21 @@ create table if not exists RESERVAS(
     data_reserva date not null,
     num_pessoas int not null,
     cancelada boolean default false,
-    FK_cpf_clientes varchar(11) not null,
+    FK_cpf_clientes varchar(14) not null,
     FK_id_voo int not null,
-    constraint foreign key (FK_cpf_clientes) references clientes(cpf),
-    constraint foreign key (FK_id_voo) references voo(id_voo)
+    constraint foreign key (FK_cpf_clientes) references clientes(cpf) on update cascade,
+    constraint foreign key (FK_id_voo) references voo(id_voo) on update cascade
 );
 
-insert into reservas values(null, curdate(), 2, false, "00000000001", 3);
-insert into reservas values(null, curdate(), 2, false, "00000000001", 4);
-insert into reservas values(null, curdate(), 5, false, "00000000002", 1);
-insert into reservas values(null, curdate(), 2, false, "00000000003", 1);
+insert into reservas values(null, curdate(), 2, false, "000.000.000-01", 3);
+insert into reservas values(null, curdate(), 2, false, "000.000.000-01", 4);
+insert into reservas values(null, curdate(), 5, false, "000.000.000-02", 1);
+insert into reservas values(null, curdate(), 2, false, "000.000.000-03", 1);
 
 create table if not exists CONTATO(
 	id_contato int primary key auto_increment,
-    nome varchar(50) not null,
-    email varchar(50) not null,
+    nome varchar(80) not null,
+    email varchar(80) not null,
     telefone varchar(14) not null,
     mensagem varchar(500) not null,
     resolvido boolean default false
@@ -81,4 +81,3 @@ create table if not exists CONTATO(
 insert into contato values(null, "Altair Martins", "altair@gmail.com", "1140028922", "Solicito contato para esclarecimento de preços", false);
 insert into contato values(null, "Rosa Maria", "rosa@gmail.com", "0112345678", "Preciso de informações sobre passagens para PCD", false);
 insert into contato values(null, "George Mota", "mota@gmail.com", "01133565896", "Preciso tirar dúvidas referentes às formas de pagamento", false);
-
